@@ -1,5 +1,5 @@
-  
-const Joi = require('joi')
+
+const Joi = require( 'joi' )
 
 exports.validateUsers = (user)=>{
     const schema = Joi.object().keys({

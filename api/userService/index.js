@@ -15,7 +15,10 @@ app.use("/api/auth", authRoute);
 
 app.get('/', (req, res) => {
     res.send({ status: "Ok", message: "Welcome to API" });
-})
+} )
+app.get("*", (req, res) => {
+    res.status(404).send({ message: "Page not found" });
+  });
 
-const PORT = process.env.PORT;
+const PORT = process.env.APP_SERVER_PORT;
 app.listen( PORT, () => console.log( `Server running on localhost ${ PORT }` ) )
