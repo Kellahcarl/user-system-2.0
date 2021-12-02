@@ -8,7 +8,7 @@ router.post("/me",auth, getLoggedUser);
 router.post("/login", loginUser);
 router.post("/reset-password", resetPassword);
 router.post("/forgot-password", forgotPassword);
-router.post( "/register", auth, registerUser );
+router.post( "/register", registerUser );
 router.get("/", getUsers);
 router.get("/:id", getUser);
 router.put("/", updateUser);

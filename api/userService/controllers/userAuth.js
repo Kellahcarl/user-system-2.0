@@ -103,6 +103,7 @@ module.exports = {
         gender,
         age,
         isAdmin: admin,
+        isDeleted: 0
       });
 
       res.send({ message: "User registered successfully" });

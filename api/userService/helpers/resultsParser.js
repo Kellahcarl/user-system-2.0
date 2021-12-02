@@ -1,16 +1,16 @@
-  
-const Joi = require('joi')
+const parseResults = (result, single)=>{
+    let key = result.recordset[0];
+    let values = Object.values(key)[0];
 
-exports.validateUsers = (user)=>{
-    const schema = Joi.object().keys({
-        firstname: Joi.string().required(),
-        lastname: Joi.string().required(),
-        age: Joi.number().min(18).required(),
-        email: Joi.string().email().required(),
-        password: Joi.string().min(8).required(),
-        isAdmin: Joi.bool().required(),
-        gender: Joi.string().required()
-    })
+    if(!values){
+        throw "no results found";
+    }
     
-    return schema.validate(user)
+    if(single){
+        return JSON.parse(values)[0]
+    }
+    
+    return JSON.parse(values)
 }
+
+module.exports = parseResults

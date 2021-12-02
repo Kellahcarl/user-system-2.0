@@ -1,0 +1,31 @@
+POST http://localhost:8081/api/auth/register
+Content-Type: application/json
+
+{
+    "firstname":"caleb",
+     "email":"caleb@gmail.com", 
+     "gender":"male",
+     "age":"18", 
+     "lastname":"kellah", 
+     "isAdmin":true,
+    "password":"@Caleb123"
+}
+
+###
+POST http://localhost:8081/api/auth/login
+Content-Type: application/json
+
+{
+    "email":"caleb@gmail.com", 
+    "password":"@Caleb123"
+}
+
+###
+POST http://localhost:8081/api/auth/me
+Content-Type: application/json 
+Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhbGViQGdtYWlsLmNvbSIsImlkIjoiZGYwNDEwYmUtZjI3Ny00Zjc5LWI5MDMtNzVmOGIzMjNjYTAwIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjM4NDI3NDg0LCJleHAiOjE2Mzg1MTM4ODR9.4Nxtgz3twNYy0z2_7e-ahSKAP6C2NsCeKJ7h3uFp_aA"
+
+{
+    "email":"caleb@gmail.com", 
+    "password":"@Caleb123"
+}

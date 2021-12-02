@@ -6,7 +6,6 @@ CREATE TABLE users (
 	gender varchar(50) NOT NULL,
 	age INT NOT NULL,
 	isDeleted BIT NOT NULL,
-	isCompleted BIT NOT NULL,
 	isAdmin BIT NOT NULL,
 	password varchar(250) NOT NULL,
 )
