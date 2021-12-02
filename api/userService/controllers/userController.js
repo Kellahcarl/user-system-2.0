@@ -194,10 +194,10 @@ module.exports = {
   },
   updateUser: async (req, res) => {
     try {
-      const { first, last, email, gender, age, id } = req.body;
+      const { firstname, lastname, email, gender, age, id } = req.body;
       await db.exec("updateUser", {
-        firstname: first,
-        lastname: last,
+        firstname,
+        lastname,
         email,
         gender,
         age,
@@ -206,6 +206,28 @@ module.exports = {
       res.status(201).send({message: "User Updated Successfully"});
     } catch (error) {
       res
+        .status(500)
+        .send({ error: error.message, message: "Internal Sever Error" });
+    }
+  },
+  deleteUser: async ( req, res ) =>
+  {
+    try {
+      const { email } = req.body;
+      const { recordset } = await db.exec("userByEmailGet", { email });
+      
+      const user = recordset[0];
+
+      if (!user)
+        return res.status( 404 ).send( { message: "Account does not exist" } );
+    
+      await db.exec( "deleteUser", {
+        id: user._id
+      } )
+      res.status( 201 ).send( { message: "User deleted Successfully" } );
+      
+    } catch (error) {
+       res
         .status(500)
         .send({ error: error.message, message: "Internal Sever Error" });
     }

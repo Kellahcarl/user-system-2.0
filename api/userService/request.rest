@@ -2,13 +2,13 @@ POST http://localhost:8081/api/auth/register
 Content-Type: application/json
 
 {
-    "firstname":"caleb",
-     "email":"caleb@gmail.com", 
+    "firstname":"samuel",
+     "email":"samuel@gmail.com", 
      "gender":"male",
      "age":"18", 
-     "lastname":"kellah", 
-     "isAdmin":true,
-    "password":"@Caleb123"
+     "lastname":"kirigha", 
+     "isAdmin":false,
+    "password":"@Samuel123"
 }
 
 ###
@@ -16,7 +16,7 @@ POST http://localhost:8081/api/auth/login
 Content-Type: application/json
 
 {
-    "email":"caleb@gmail.com", 
+    "email":"samuel@gmail.com", 
     "password":"@Caleb123"
 }
 
@@ -35,7 +35,7 @@ POST http://localhost:8081/api/auth/reset-password
 Content-Type: application/json 
 
 {
-    "token": "df0410be-f277-4f79-b903-75f8b323ca00",
+    "token": "72c38a21-e66a-4b45-a8f5-e442d9b915bb",
     "password":"@Caleb123"
 }
 
@@ -54,8 +54,27 @@ GET http://localhost:8081/api/auth
 
 ###
 
-GET http://localhost:8081/api/auth/:df0410be-f277-4f79-b903-75f8b323ca00
+GET http://localhost:8081/api/auth/72c38a21-e66a-4b45-a8f5-e442d9b915bb
 
 ###
 
+PUT http://localhost:8081/api/auth
+Content-Type: application/json
 
+{
+    "id":"72c38a21-e66a-4b45-a8f5-e442d9b915bb",
+    "firstname": "jonathan",
+    "lastname": "mwaniki",
+    "email":"jonathan@gmail.com",
+    "gender":"male",
+    "age":"100"    
+}
+
+###
+
+PUT http://localhost:8081/api/auth/delete
+Content-Type: application/json
+
+{
+    "email":"jonathan@gmail.com"   
+}

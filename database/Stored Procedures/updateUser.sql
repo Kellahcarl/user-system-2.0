@@ -1,4 +1,4 @@
-CREATE PROCEDURE [dbo].[updateUser]
+CREATE OR ALTER  PROCEDURE [dbo].[updateUser]
 	@id varchar(100),
 	@firstname varchar(100),
 	@lastname varchar(100),
@@ -19,3 +19,4 @@ begin
 	age=@age
 	WHERE _id = @id;
 end;
+
