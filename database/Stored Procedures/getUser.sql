@@ -1,4 +1,4 @@
-CREATE PROCEDURE [dbo].[userGet]
+CREATE PROCEDURE [dbo].[getUser]
 	@userId	varchar(100)
 as
 

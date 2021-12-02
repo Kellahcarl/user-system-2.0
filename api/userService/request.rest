@@ -23,9 +23,39 @@ Content-Type: application/json
 ###
 POST http://localhost:8081/api/auth/me
 Content-Type: application/json 
-Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhbGViQGdtYWlsLmNvbSIsImlkIjoiZGYwNDEwYmUtZjI3Ny00Zjc5LWI5MDMtNzVmOGIzMjNjYTAwIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjM4NDI3NDg0LCJleHAiOjE2Mzg1MTM4ODR9.4Nxtgz3twNYy0z2_7e-ahSKAP6C2NsCeKJ7h3uFp_aA"
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhbGViQGdtYWlsLmNvbSIsImlkIjoiZGYwNDEwYmUtZjI3Ny00Zjc5LWI5MDMtNzVmOGIzMjNjYTAwIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjM4NDI3NDg0LCJleHAiOjE2Mzg1MTM4ODR9.4Nxtgz3twNYy0z2_7e-ahSKAP6C2NsCeKJ7h3uFp_aA
 
 {
-    "email":"caleb@gmail.com", 
+    "email":"caleb@gmail.com"
+}
+
+###
+
+POST http://localhost:8081/api/auth/reset-password
+Content-Type: application/json 
+
+{
+    "token": "df0410be-f277-4f79-b903-75f8b323ca00",
     "password":"@Caleb123"
 }
+
+###
+
+POST http://localhost:8081/api/auth/forgot-password
+Content-Type: application/json 
+
+{
+   "email":"caleb@gmail.com"
+}
+
+###
+
+GET http://localhost:8081/api/auth
+
+###
+
+GET http://localhost:8081/api/auth/:df0410be-f277-4f79-b903-75f8b323ca00
+
+###
+
+

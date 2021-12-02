@@ -1,4 +1,4 @@
-CREATE  PROCEDURE [dbo].[usersGet]
+CREATE  PROCEDURE [dbo].[getUsers]
 as
 
 set nocount on;

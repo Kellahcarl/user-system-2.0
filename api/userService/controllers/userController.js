@@ -5,7 +5,6 @@ const { v4: uuidv4 } = require("uuid");
 const Joi = require("joi");
 const _ = require("lodash");
 const generateToken = require("../helpers/tokenGenerator");
-const parseResults = require("../helpers/resultsParser");
 
 module.exports = {
   loginUser: async (req, res) => {
@@ -174,7 +173,7 @@ module.exports = {
         return res.status(400).send({ message: "Email does not exist" });
 
       await db.query(
-        "INSERT INTO dbo.reset_password_queue VALUES ('" + user._id + "', 1) "
+        "INSERT INTO dbo.reset_password VALUES ('" + user._id + "', 1) "
       );
       res.send({ message: "Check your email for the reset password link" });
     } catch (error) {
@@ -182,7 +181,7 @@ module.exports = {
     }
   },
   getUsers: async (req, res) => {
-    let { recordset } = await db.exec("getusers");
+    let { recordset } = await db.exec("getUsers");
     res.send({ users: recordset });
   },
   getUser: async (req, res) => {

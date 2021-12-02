@@ -14,7 +14,7 @@ app.use(cors())
 app.use("/api/auth", authRoute);
 
 app.get('/', (req, res) => {
-    res.send({ status: "Ok", message: "Welcome to API" });
+    res.send({ status: "Ok", message: "Api!" });
 } )
 app.get("*", (req, res) => {
     res.status(404).send({ message: "Page not found" });
