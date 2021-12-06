@@ -214,12 +214,19 @@ module.exports = {
   {
     try {
       const { email } = req.body;
-      const { recordset } = await db.exec("userByEmailGet", { email });
+      const { recordset } = await db.exec("getIsDeleted", { email });
       
       const user = recordset[0];
 
-      if (!user)
+      if ( !user )
+      {
         return res.status( 404 ).send( { message: "Account does not exist" } );
+      }
+      if ( user.isDeleted )
+      {
+        return res.status( 404 ).send( { message: "Account already deleted" } );
+      }
+        
     
       await db.exec( "deleteUser", {
         id: user._id
