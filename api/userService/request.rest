@@ -2,13 +2,13 @@ POST http://localhost:8081/api/auth/register
 Content-Type: application/json
 
 {
-    "firstname":"samuel",
-     "email":"samuel@gmail.com", 
+    "firstname":"denis",
+     "email":"denis11@gmail.com", 
      "gender":"male",
-     "age":"18", 
-     "lastname":"kirigha", 
+     "age":"40", 
+     "lastname":"wambui", 
      "isAdmin":false,
-    "password":"@Samuel123"
+    "password":"@Denis123"
 }
 
 ###
@@ -16,8 +16,8 @@ POST http://localhost:8081/api/auth/login
 Content-Type: application/json
 
 {
-    "email":"samuel@gmail.com", 
-    "password":"@Samuel123"
+    "email":"denis@gmail.com", 
+    "password":"@Denis123"
 }
 
 ###
