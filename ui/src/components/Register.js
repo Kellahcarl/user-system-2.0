@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
+import Select from "react-validation/build/select";
 import { isEmail } from "validator";
 
 import { register } from "../redux/actions/auth";
@@ -32,25 +33,17 @@ const vname = (value) => {
   if (value.length < 3 || value.length > 20) {
     return (
       <div className="alert alert-danger" role="alert">
-        The name must be between 3 and 20 characters.
+        The name must be between 3 and 20 characters!
       </div>
     );
   }
 };
-const vgender = (value) => {
-  if (value.length < 4 || value.length > 6) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        Gender must be between 4 and 6 characters.
-      </div>
-    );
-  }
-};
+
 const vage = (value) => {
-  if (value < 18 || value > 99) {
+  if (value <= 18 ) {
     return (
       <div className="alert alert-danger" role="alert">
-        Age must be between 0-99 .
+        Age must be between 18-99 years .
       </div>
     );
   }
@@ -66,6 +59,7 @@ const vpassword = (value) => {
   }
 };
 
+
 const Register = () => {
   const form = useRef();
   const checkBtn = useRef();
@@ -77,6 +71,7 @@ const Register = () => {
   const [age, setAge] = useState( 0 );
   const [isAdmin, setIsAdmin] = useState(false);
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [successful, setSuccessful] = useState(false);
 
   const { message } = useSelector(state => state.message);
@@ -113,10 +108,11 @@ const Register = () => {
     setPassword(password);
   };
 
+
   const handleRegister = (e) => {
     e.preventDefault();
 
-    setSuccessful(false);
+    setSuccessful( false );
 
     form.current.validateAll();
     
@@ -129,7 +125,10 @@ const Register = () => {
           setSuccessful(false);
         });
     }
-  };
+  }; 
+    
+
+    
 
   return (
     <div className="col-md-12">
@@ -167,24 +166,28 @@ const Register = () => {
               </div>
               <div className="form-group">
                 <label htmlFor="gender">Gender</label>
-                <Input
-                  type="text"
+                <Select
+                  name='gender'
                   className="form-control"
-                  name="gender"
                   value={gender}
                   onChange={onChangeGender}
-                  validations={[required, vgender]}
-                />
+                  validations={[required ]}
+                >
+                    <option value=''>Select gender</option>
+                    <option value='male'>Male</option>
+                    <option value='female'>Female</option>
+                </Select>
               </div>
               <div className="form-group">
                 <label htmlFor="age">Age</label>
+
                 <Input
                   type="number"
                   className="form-control"
                   name="age"
                   value={age}
                   onChange={onChangeAge}
-                  validations={[required, vage]}
+                  validations={[required ,vage]}
                 />
               </div>
               <div className="form-group">
