@@ -10,7 +10,8 @@ exports.validateUsers = (user)=>{
         password: Joi.string().min(8).required(),
         isAdmin: Joi.bool().required(),
         gender: Joi.string().required()
-    })
+    } )
+    console.log(schema.validate(user));
     
     return schema.validate(user)
 }
