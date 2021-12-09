@@ -1,0 +1,35 @@
+POST http://localhost:8082/api/projects
+Content-Type: application/json
+
+{
+    "lead_user_id":"4df9ff7f-a9ba-42f9-9b2e-ed2902381d26",
+    "name":"first project",
+    "client_name":"theJitu",
+    "start_date":"1995, 11, 17",
+    "end_date":"1995, 11, 20",
+    "description":"getting tasks"
+}
+
+###
+
+GET http://localhost:8082/api/projects/4df9ff7f-a9ba-42f9-9b2e-ed2902381d26
+
+
+###
+
+GET http://localhost:8082/api/projects/3efdfeea-6714-4678-93cc-6164fd855fc3/user/4df9ff7f-a9ba-42f9-9b2e-ed2902381d26
+
+
+###
+PUT  http://localhost:8082/api/projects
+Content-Type: application/json
+
+{
+    "_id":"4df9ff7f-a9ba-42f9-9b2e-ed2902381d26",
+    "lead_user_id":"4df9ff7f-a9ba-42f9-9b2e-ed2902381d26",
+    "name":"first updated project",
+    "client_name":"theJitu",
+    "start_date":"1995, 11, 17",
+    "end_date":"1995, 11, 20",
+    "description":"getting tasks"
+}

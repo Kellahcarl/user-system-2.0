@@ -46,7 +46,7 @@ module.exports = {
 
   getLoggedUser: async (req, res) => {
     try {
-      const { email } = req.user;
+      const { email } = req.body
       const {recordset} = await db.exec("userByEmailGet", { email });
       const user = recordset[0];
 

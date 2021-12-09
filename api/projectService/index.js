@@ -20,6 +20,9 @@ app.use("/api/tasks", tasksRoute);
 app.get('/', (req, res) => {
     res.send({ status: "Ok", message: "API!" });
 } )
-
+app.get("*", (req, res) => {
+    res.status(404).send({ message: "Page not found" });
+} );
+  
 const PORT = process.env.APP_SERVER_PORT;
 app.listen( PORT, () => console.log( `Server running on localhost ${ PORT }` ) )

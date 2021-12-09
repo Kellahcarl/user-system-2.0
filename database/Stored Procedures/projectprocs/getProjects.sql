@@ -39,8 +39,7 @@ BEGIN
 			p.lead_user_id,
 			p.start_date,
 			p.end_date,
-			p.client_name,
-			p.team_id
+			p.client_name
 			FROM dbo.projects p 
 			LEFT join 
 			dbo.AssignedProjects ap 

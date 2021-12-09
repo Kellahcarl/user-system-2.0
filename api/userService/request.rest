@@ -23,7 +23,7 @@ Content-Type: application/json
 ###
 POST http://localhost:8081/api/auth/me
 Content-Type: application/json 
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhbGViQGdtYWlsLmNvbSIsImlkIjoiZGYwNDEwYmUtZjI3Ny00Zjc5LWI5MDMtNzVmOGIzMjNjYTAwIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjM4NDI3NDg0LCJleHAiOjE2Mzg1MTM4ODR9.4Nxtgz3twNYy0z2_7e-ahSKAP6C2NsCeKJ7h3uFp_aA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvbGFuQGdtYWlsLmNvbSIsImlkIjoiNGRmOWZmN2YtYTliYS00MmY5LTliMmUtZWQyOTAyMzgxZDI2IiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjM5MDQxODgyLCJleHAiOjE2MzkxMjgyODJ9.HlNyVpxGElLXDUMRxxD95nHLdf9kKSd_jSs0VunDOAk
 
 {
     "email":"caleb@gmail.com"

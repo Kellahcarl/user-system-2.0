@@ -55,7 +55,7 @@ module.exports = {
         client_name,
         start_date,
         end_date,
-        description,
+        description
       } = req.body;
       const id = uuidv4();
       const result = await db.exec("createOrUpdateProject", {
@@ -163,4 +163,5 @@ module.exports = {
         .send({ message: `Internal Server Error - ${error.message}` });
     }
   },
+  
 };
