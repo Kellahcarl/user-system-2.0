@@ -1,10 +1,10 @@
-CREATE PROCEDURE [dbo].[getTasks]
+CREATE OR ALTER PROCEDURE [dbo].[getTasks]
  @project_id varchar(100)
 as
 
-set nocount on;
 
 begin
+set nocount on;
 	select	t._id,
 			t.name,
 			t.project_id,

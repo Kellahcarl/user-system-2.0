@@ -1,0 +1,21 @@
+POST http://localhost:8082/api/tasks
+Content-Type: application/json
+
+{
+    "user_id":"4df9ff7f-a9ba-42f9-9b2e-ed2902381d26",
+    "project_id":"3c72eba6-b967-4fee-bb8d-7deed7778908",
+    "name":"Task1",
+    "start_date":"1995-11-16",
+    "end_date":"1995-11-17",
+    "description":"first task",
+    "duration":"24"
+}
+
+###
+GET http://localhost:8082/api/tasks/3c72eba6-b967-4fee-bb8d-7deed7778908
+
+###
+
+http://localhost:8082/api/tasks/3c72eba6-b967-4fee-bb8d-7deed7778908/3c72eba6-b967-4fee-bb8d-7deed7778908
+
+###

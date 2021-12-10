@@ -25,11 +25,31 @@ PUT  http://localhost:8082/api/projects
 Content-Type: application/json
 
 {
-    "_id":"4df9ff7f-a9ba-42f9-9b2e-ed2902381d26",
+    "_id":"3c72eba6-b967-4fee-bb8d-7deed7778908",
     "lead_user_id":"4df9ff7f-a9ba-42f9-9b2e-ed2902381d26",
     "name":"first updated project",
-    "client_name":"theJitu",
+    "client_name":"onQ",
     "start_date":"1995, 11, 17",
     "end_date":"1995, 11, 20",
     "description":"getting tasks"
+}
+
+###
+GET  http://localhost:8082/api/projects/assign/3c72eba6-b967-4fee-bb8d-7deed7778908
+
+###
+POST  http://localhost:8082/api/projects/assign
+Content-Type: application/json
+
+{
+    "project_id":"3c72eba6-b967-4fee-bb8d-7deed7778908",
+    "user_id":["4df9ff7f-a9ba-42f9-9b2e-ed2902381d26"]
+}
+
+###
+PUT   http://localhost:8082/api/projects/delete
+Content-Type: application/json
+
+{
+    "project_id":"3c72eba6-b967-4fee-bb8d-7deed777908"
 }

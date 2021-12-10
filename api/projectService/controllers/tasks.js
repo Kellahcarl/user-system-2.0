@@ -1,15 +1,15 @@
 const db = require("../database");
 const { v4: uuidv4 } = require("uuid");
 const { taskValidator } = require("../helpers/taskValidator");
-const parser = require("../helpers/parser");
+const parseResults = require("../helpers/parser");
 
 module.exports = {
   getTasks: async (req, res) => {
     const { pid } = req.params;
     try {
       let result = await db.exec("getTasks", { project_id: pid });
-      const tasks = parser(result);
-      res.status(200).json({tasks});
+      data = result.recordset;
+      res.status(200).json({ data });
     } catch (error) {
       if (error.message) return res.status(500).json(error);
       res.status(404).json(error);
@@ -22,8 +22,9 @@ module.exports = {
         project_id: pid,
         task_id: tid,
       });
-      const task = parser(result, true);
-      res.status(200).json({task});
+      data = result;
+      console.log(data);
+      res.status(200).json({ data });
     } catch (error) {
       if (error.message) return res.status(500).json(error);
       res.status(404).json(error);
@@ -68,7 +69,7 @@ module.exports = {
         duration,
         start_date: new Date(start_date),
         end_date: new Date(end_date),
-        description
+        description,
       });
       res.send({ message: "Task created successfully" });
     } catch (error) {
@@ -76,4 +77,30 @@ module.exports = {
       res.status(500).send({ message: "Internal Server Error" });
     }
   },
+  deleteTask: async (req, res) => {
+    try {
+      const { task_id } = req.body;
+      const { project_id } = req.body;
+      const { recordset } = await db.exec("getTask", { task_id, project_id });
+
+      const task = recordset[0];
+
+      if (!task) {
+        return res.status(404).send({ message: "task does not exist" });
+      }
+      if (task.isDeleted) {
+        return res.status(404).send({ message: "task already deleted" });
+      }
+
+      await db.exec("deleteTask", {
+        id: task.task_id,
+      });
+      res.status(201).send({ message: "task deleted Successfully" });
+    } catch (error) {
+      res
+        .status(500)
+        .send({ error: error.message, message: "Internal Sever Error" });
+    }
+  },
+  updateTask: async (req, res) => {},
 };

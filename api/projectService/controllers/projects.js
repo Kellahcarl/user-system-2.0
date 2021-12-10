@@ -55,10 +55,10 @@ module.exports = {
         client_name,
         start_date,
         end_date,
-        description
+        description,
       } = req.body;
       const id = uuidv4();
-      const result = await db.exec("createOrUpdateProject", {
+      const result = await db.exec("createProject", {
         id,
         name,
         lead_user_id,
@@ -111,9 +111,8 @@ module.exports = {
         description,
       } = req.body;
 
-      
-      await db.exec("createOrUpdateProject", {
-        id:_id,
+      await db.exec("updateProject", {
+        id: _id,
         name,
         lead_user_id,
         client_name,
@@ -125,7 +124,9 @@ module.exports = {
       res.send({ message: "Project updated successfully" });
     } catch (error) {
       console.error(error);
-      res.status(500).send({ message: "Internal Server Error", error: error.message });
+      res
+        .status(500)
+        .send({ message: "Internal Server Error", error: error.message });
     }
   },
 
@@ -163,5 +164,31 @@ module.exports = {
         .send({ message: `Internal Server Error - ${error.message}` });
     }
   },
-  
+  deleteProject: async (req, res) => {
+    try {
+      const { project_id } = req.body;
+      const { recordset } = await db.exec("getProject", { project_id });
+
+      const project = recordset[0];
+
+      if (!project) {
+        return res.status(404).send({ message: "Project does not exist" });
+      }
+      if (project.isDeleted) {
+        return res.status(404).send({ message: "Project already deleted" });
+      }
+
+      await db.exec("deleteProject", {
+        id: project.project_id,
+      });
+      res.status(201).send({ message: "Project deleted Successfully" });
+    } catch (error) {
+      res
+        .status(500)
+        .send({ error: error.message, message: "Internal Sever Error" });
+    }
+  },
+  completeProject: async (req, res) => {
+    console.log("completed");
+  },
 };
