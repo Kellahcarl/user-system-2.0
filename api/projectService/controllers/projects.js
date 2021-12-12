@@ -88,7 +88,7 @@ module.exports = {
     if (!req.body._id)
       return res
         .status(400)
-        .send({ success: false, message: "_id is required" });
+        .send({ success: false, message: "project_id is required" });
     if (error)
       return res
         .status(400)

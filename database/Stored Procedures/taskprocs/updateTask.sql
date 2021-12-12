@@ -1,10 +1,11 @@
-CREATE PROCEDURE [dbo].[updateTask]
-	@id varchar(100),
+CREATE OR ALTER PROCEDURE [dbo].[updateTask]
+	@_id varchar(100),
 	@name varchar(100),
 	@project_id varchar(100),
 	@user_id varchar(100),
 	@start_date date,
 	@end_date date,
+	@duration varchar(100),
 	@description varchar(500)
 as
 
@@ -17,7 +18,8 @@ begin
 	project_id=@project_id, 
 	user_id=@user_id, 
 	description=@description,
+	duration=@duration,
 	start_date=@start_date,
 	end_date=@end_date
-	WHERE _id = @id;
+	WHERE _id = @_id;
 end;

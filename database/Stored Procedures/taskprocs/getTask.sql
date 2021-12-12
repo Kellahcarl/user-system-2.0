@@ -1,4 +1,4 @@
-CREATE PROCEDURE [dbo].[getTask]
+CREATE OR ALTER PROCEDURE [dbo].[getTask]
  @project_id varchar(100),
  @task_id varchar(100)
 as
@@ -13,6 +13,8 @@ begin
 			t.duration,
 			t.start_date,
 			t.end_date,
-			t.description
+			t.description,
+			t.isDeleted,
+			t.iscompleted
 	from	[tasks] t where project_id = @project_id and _id=@task_id;
 end;

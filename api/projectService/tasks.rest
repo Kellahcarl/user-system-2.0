@@ -16,6 +16,48 @@ GET http://localhost:8082/api/tasks/3c72eba6-b967-4fee-bb8d-7deed7778908
 
 ###
 
-http://localhost:8082/api/tasks/3c72eba6-b967-4fee-bb8d-7deed7778908/3c72eba6-b967-4fee-bb8d-7deed7778908
+GET http://localhost:8082/api/tasks/3c72eba6-b967-4fee-bb8d-7deed7778908/bc0be9f8-2481-4034-b188-74c43d7b5d79
 
 ###
+PUT  http://localhost:8082/api/tasks/delete
+Content-Type: application/json
+
+{
+    "task_id":"e36e87e8-527c-4038-b1ff-1f22f82da0d6",
+    "project_id":"3c72eba6-b967-4fee-bb8d-7deed7778908"
+}
+###
+PUT http://localhost:8082/api/tasks
+Content-Type: application/json
+
+{
+    "_id":"e36e87e8-527c-4038-b1ff-1f22f82da0d6",
+    "user_id":"4df9ff7f-a9ba-42f9-9b2e-ed2902381d26",
+    "project_id":"3c72eba6-b967-4fee-bb8d-7deed7778908",
+    "name":"updated Task1",
+    "start_date":"1995-11-16",
+    "end_date":"1995-11-17",
+    "description":"first task",
+    "duration":"24"
+}
+
+###
+POST http://localhost:8082/api/tasks/assign
+Content-Type: application/json
+
+{
+    "task_id":"e36e87e8-527c-4038-b1ff-1f22f82da0d6",
+    "user_id":"4df9ff7f-a9ba-42f9-9b2e-ed2902381d26"
+}
+
+###
+GET http://localhost:8082/api/tasks/assign/e36e87e8-527c-4038-b1ff-1f22f82da0d6
+
+###
+PUT  http://localhost:8082/api/tasks/complete
+Content-Type: application/json
+
+{
+    "task_id":"e36e87e8-527c-4038-b1ff-1f22f82da0d6",
+    "project_id":"3c72eba6-b967-4fee-bb8d-7deed7778908"
+}
