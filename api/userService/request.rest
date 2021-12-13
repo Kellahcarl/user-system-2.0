@@ -2,13 +2,13 @@ POST http://localhost:8081/api/auth/register
 Content-Type: application/json
 
 {
-    "firstname":"joan",
-     "email":"jolan2@gmail.com", 
+    "firstname":"caleb",
+     "email":"bcaleb98@gmail.com", 
      "gender":"male",
-     "age":58, 
-     "lastname":"maina", 
+     "age":24, 
+     "lastname":"kellah", 
      "isAdmin":true,
-    "password":"Joan123"
+    "password":"Caleb123"
 }
 
 ###
