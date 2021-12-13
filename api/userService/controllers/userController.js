@@ -46,8 +46,8 @@ module.exports = {
 
   getLoggedUser: async (req, res) => {
     try {
-      const { email } = req.body
-      const {recordset} = await db.exec("userByEmailGet", { email });
+      const { email } = req.body;
+      const { recordset } = await db.exec("userByEmailGet", { email });
       const user = recordset[0];
 
       const token = generateToken(user.email, user._id, user.isAdmin);
@@ -102,8 +102,13 @@ module.exports = {
         gender,
         age,
         isAdmin: admin,
-        isDeleted: 0
+        isDeleted: 0,
       });
+      await db.query(
+        "INSERT INTO dbo.registration_email_queue (user_id, active) VALUES ('" +
+          id +
+          "', 1)"
+      );
 
       res.send({ message: "User registered successfully" });
     } catch (error) {
@@ -203,40 +208,35 @@ module.exports = {
         age,
         id,
       });
-      res.status(201).send({message: "User Updated Successfully"});
+      res.status(201).send({ message: "User Updated Successfully" });
     } catch (error) {
       res
         .status(500)
         .send({ error: error.message, message: "Internal Sever Error" });
     }
   },
-  deleteUser: async ( req, res ) =>
-  {
+  deleteUser: async (req, res) => {
     try {
       const { email } = req.body;
       const { recordset } = await db.exec("getIsDeleted", { email });
-      
+
       const user = recordset[0];
 
-      if ( !user )
-      {
-        return res.status( 404 ).send( { message: "Account does not exist" } );
+      if (!user) {
+        return res.status(404).send({ message: "Account does not exist" });
       }
-      if ( user.isDeleted )
-      {
-        return res.status( 404 ).send( { message: "Account already deleted" } );
+      if (user.isDeleted) {
+        return res.status(404).send({ message: "Account already deleted" });
       }
-        
-    
-      await db.exec( "deleteUser", {
-        id: user._id
-      } )
-      res.status( 201 ).send( { message: "User deleted Successfully" } );
-      
+
+      await db.exec("deleteUser", {
+        id: user._id,
+      });
+      res.status(201).send({ message: "User deleted Successfully" });
     } catch (error) {
-       res
+      res
         .status(500)
         .send({ error: error.message, message: "Internal Sever Error" });
     }
-  }
+  },
 };
