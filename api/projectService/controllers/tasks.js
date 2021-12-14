@@ -210,4 +210,5 @@ module.exports = {
         .send({ error: error.message, message: "Internal Sever Error" });
     }
   },
+  unassignTask: async (req, res) => {},
 };

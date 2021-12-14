@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Router, Switch, Route, Link } from "react-router-dom";
 
@@ -20,6 +20,8 @@ import { history } from "./helpers/history";
 import EventBus from "./common/EventBus";
 
 const App = () => {
+  const [showAdminBoard, setShowAdminBoard] = useState(false);
+
   const { user: currentUser } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -34,7 +36,11 @@ const App = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    
+    // if ((currentUser.user.isAdmin = true)) {
+    //   setShowAdminBoard(currentUser);
+    // } else {
+    //   setShowAdminBoard(false);
+    // }
 
     EventBus.on("logout", () => {
       logOut();
@@ -44,6 +50,7 @@ const App = () => {
       EventBus.remove("logout");
     };
   }, [currentUser, logOut]);
+  console.log(currentUser.user.isAdmin);
 
   return (
     <Router history={history}>
