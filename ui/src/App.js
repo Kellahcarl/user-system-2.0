@@ -5,11 +5,12 @@ import { Router, Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Home from "./components/Home";
-import Profile from "./components/Profile";
-import BoardUser from "./components/BoardUser";
+import Login from "./components/userService/Login";
+import Register from "./components/userService/Register";
+import Home from "./components/userService/Home";
+import Profile from "./components/userService/Profile";
+import BoardUser from "./components/userService/BoardUser";
+import BoardAdmin from "./components/userService/BoardAdmin";
 
 import { logout } from "./redux/actions/auth";
 import { clearMessage } from "./redux/actions/message";
@@ -36,11 +37,11 @@ const App = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    // if ((currentUser.user.isAdmin = true)) {
-    //   setShowAdminBoard(currentUser);
-    // } else {
-    //   setShowAdminBoard(false);
-    // }
+    if (currentUser) {
+      setShowAdminBoard(currentUser.user.isAdmin);
+    } else {
+      setShowAdminBoard(false);
+    }
 
     EventBus.on("logout", () => {
       logOut();
@@ -50,7 +51,7 @@ const App = () => {
       EventBus.remove("logout");
     };
   }, [currentUser, logOut]);
-  console.log(currentUser.user.isAdmin);
+  // console.log(currentUser.user.isAdmin);
 
   return (
     <Router history={history}>
@@ -65,6 +66,14 @@ const App = () => {
                 Home
               </Link>
             </li>
+
+            {showAdminBoard && (
+              <li className="nav-item">
+                <Link to={"/admin"} className="nav-link">
+                  Admin Board
+                </Link>
+              </li>
+            )}
 
             {currentUser && (
               <li className="nav-item">
@@ -112,6 +121,7 @@ const App = () => {
             <Route exact path="/register" component={Register} />
             <Route exact path="/profile" component={Profile} />
             <Route path="/user" component={BoardUser} />
+            <Route path="/admin" component={BoardAdmin} />
           </Switch>
         </div>
 

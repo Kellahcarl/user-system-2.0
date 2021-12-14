@@ -3,11 +3,11 @@ Content-Type: application/json
 
 {
     "firstname":"Eugene",
-     "email":"eugenekorir1@gmail.com", 
+     "email":"eugenekorir11@gmail.com", 
      "gender":"male",
      "age":24, 
      "lastname":"korir", 
-     "isAdmin":true,
+     "isAdmin":false,
     "password":"Eugene123"
 }
 

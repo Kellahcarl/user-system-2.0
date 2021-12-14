@@ -7,7 +7,7 @@ import CheckButton from "react-validation/build/button";
 import Select from "react-validation/build/select";
 import { isEmail } from "validator";
 
-import { register } from "../redux/actions/auth";
+import { register } from "../../redux/actions/auth";
 
 const required = (value) => {
   if (!value) {
@@ -40,7 +40,7 @@ const vname = (value) => {
 };
 
 const vage = (value) => {
-  if (value <= 18 ) {
+  if (value <= 18) {
     return (
       <div className="alert alert-danger" role="alert">
         Age must be between 18-99 years .
@@ -59,22 +59,21 @@ const vpassword = (value) => {
   }
 };
 
-
 const Register = () => {
   const form = useRef();
   const checkBtn = useRef();
 
-  const [firstname, setFirstname] = useState( "" );
+  const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
-  const [email, setEmail] = useState( "" );
-  const [gender, setGender] = useState( "" );
-  const [age, setAge] = useState( 0 );
+  const [email, setEmail] = useState("");
+  const [gender, setGender] = useState("");
+  const [age, setAge] = useState(0);
   const [isAdmin, setIsAdmin] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [successful, setSuccessful] = useState(false);
 
-  const { message } = useSelector(state => state.message);
+  const { message } = useSelector((state) => state.message);
   const dispatch = useDispatch();
 
   const onChangeFirstname = (e) => {
@@ -83,7 +82,7 @@ const Register = () => {
   };
   const onChangeLastname = (e) => {
     const lastname = e.target.value;
-    setLastname( lastname );
+    setLastname(lastname);
   };
   const onChangeGender = (e) => {
     const gender = e.target.value;
@@ -108,16 +107,17 @@ const Register = () => {
     setPassword(password);
   };
 
-
   const handleRegister = (e) => {
     e.preventDefault();
 
-    setSuccessful( false );
+    setSuccessful(false);
 
     form.current.validateAll();
-    
+
     if (checkBtn.current.context._errors.length === 0) {
-      dispatch(register(firstname,lastname,age,gender,isAdmin, email, password))
+      dispatch(
+        register(firstname, lastname, age, gender, isAdmin, email, password)
+      )
         .then(() => {
           setSuccessful(true);
         })
@@ -125,10 +125,7 @@ const Register = () => {
           setSuccessful(false);
         });
     }
-  }; 
-    
-
-    
+  };
 
   return (
     <div className="col-md-12">
@@ -167,15 +164,15 @@ const Register = () => {
               <div className="form-group">
                 <label htmlFor="gender">Gender</label>
                 <Select
-                  name='gender'
+                  name="gender"
                   className="form-control"
                   value={gender}
                   onChange={onChangeGender}
-                  validations={[required ]}
+                  validations={[required]}
                 >
-                    <option value=''>Select gender</option>
-                    <option value='male'>Male</option>
-                    <option value='female'>Female</option>
+                  <option value="">Select gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
                 </Select>
               </div>
               <div className="form-group">
@@ -187,17 +184,19 @@ const Register = () => {
                   name="age"
                   value={age}
                   onChange={onChangeAge}
-                  validations={[required ,vage]}
+                  validations={[required, vage]}
                 />
               </div>
               <div className="form-group">
                 <label htmlFor="isAdmin">Admin</label>
-                <Input type="checkbox"
+                <Input
+                  type="checkbox"
                   className="form-control"
                   name="isAdmin"
                   checked={isAdmin}
                   value={isAdmin}
-                  onChange={onChangeIsAdmin}/>
+                  onChange={onChangeIsAdmin}
+                />
               </div>
 
               <div className="form-group">
@@ -232,7 +231,12 @@ const Register = () => {
 
           {message && (
             <div className="form-group">
-              <div className={ successful ? "alert alert-success" : "alert alert-danger" } role="alert">
+              <div
+                className={
+                  successful ? "alert alert-success" : "alert alert-danger"
+                }
+                role="alert"
+              >
                 {message}
               </div>
             </div>
