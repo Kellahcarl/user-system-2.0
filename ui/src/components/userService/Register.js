@@ -59,6 +59,16 @@ const vpassword = (value) => {
   }
 };
 
+const vcpassword = (value) => {
+  if (value.length < 6 || value.length > 40) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        The password must be between 6 and 40 characters.
+      </div>
+    );
+  }
+};
+
 const Register = () => {
   const form = useRef();
   const checkBtn = useRef();
@@ -106,10 +116,25 @@ const Register = () => {
     const password = e.target.value;
     setPassword(password);
   };
+  const onChangeConfirmPassword = (e) => {
+    const confirmPassword = e.target.value;
+    setPassword(confirmPassword);
+  };
+  // const ConfirmPassword = () => {
+  //   if (confirmPassword === password) {
+  //     setConfirmPassword(password);
+  //   } else {
+  //     return (
+  //       <div className="alert alert-danger" role="alert">
+  //         passwords not matching!
+  //       </div>
+  //     );
+  //   }
+  // };
 
   const handleRegister = (e) => {
     e.preventDefault();
-
+    // ConfirmPassword();
     setSuccessful(false);
 
     form.current.validateAll();
@@ -130,12 +155,6 @@ const Register = () => {
   return (
     <div className="col-md-12">
       <div className="card card-container">
-        <img
-          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-          alt="profile-img"
-          className="profile-img-card"
-        />
-
         <Form onSubmit={handleRegister} ref={form}>
           {!successful && (
             <div>
@@ -175,28 +194,30 @@ const Register = () => {
                   <option value="female">Female</option>
                 </Select>
               </div>
-              <div className="form-group">
-                <label htmlFor="age">Age</label>
+              <div className="agegender">
+                <div className="form-group ">
+                  <label htmlFor="age">Age</label>
 
-                <Input
-                  type="number"
-                  className="form-control"
-                  name="age"
-                  value={age}
-                  onChange={onChangeAge}
-                  validations={[required, vage]}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="isAdmin">Admin</label>
-                <Input
-                  type="checkbox"
-                  className="form-control"
-                  name="isAdmin"
-                  checked={isAdmin}
-                  value={isAdmin}
-                  onChange={onChangeIsAdmin}
-                />
+                  <Input
+                    type="number"
+                    className="form-control"
+                    name="age"
+                    value={age}
+                    onChange={onChangeAge}
+                    validations={[required, vage]}
+                  />
+                </div>
+                <div className="form-group ">
+                  <label htmlFor="isAdmin">Admin</label>
+                  <Input
+                    type="checkbox"
+                    className="form-control"
+                    name="isAdmin"
+                    checked={isAdmin}
+                    value={isAdmin}
+                    onChange={onChangeIsAdmin}
+                  />
+                </div>
               </div>
 
               <div className="form-group">
@@ -220,6 +241,17 @@ const Register = () => {
                   value={password}
                   onChange={onChangePassword}
                   validations={[required, vpassword]}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="password">Confirm Password</label>
+                <Input
+                  type="password"
+                  className="form-control"
+                  name="confirmPassword"
+                  value={confirmPassword}
+                  onChange={onChangeConfirmPassword}
+                  validations={[required, vcpassword]}
                 />
               </div>
 

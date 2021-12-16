@@ -1,5 +1,6 @@
-const db = require("../../database");
+const db = require("../database");
 const { sendMail } = require("../helpers/email");
+
 module.exports = async () => {
   const items = await (
     await db.query(

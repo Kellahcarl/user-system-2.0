@@ -1,18 +1,11 @@
 import axios from "axios";
-import authHeader from "./auth-header";
 
-const PROJECT_URL = "http://localhost:8080/api/";
-const TASK_URL = "http://localhost:8080/api/";
+const BASE_URL = "http://localhost:8082/api/";
 
-const getProjectBoard = () => {
-  return axios.get(PROJECT_URL + "projects", { headers: authHeader() });
-};
+export const getProjectBoard = axios.create({
+  baseURL: BASE_URL + "projects",
+});
 
-const getTaskBoard = () => {
-  return axios.get(TASK_URL + "tasks", { headers: authHeader() });
-};
-
-export default {
-  getProjectBoard,
-  getTaskBoard,
-};
+export const getTaskBoard = axios.create({
+  baseURL: BASE_URL + "tasks",
+});

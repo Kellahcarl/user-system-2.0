@@ -153,7 +153,7 @@ module.exports = {
       const { project_id, user_id } = req.body;
       for (let u_id of user_id) {
         const id = uuidv4();
-        await db.exec("assignProject", { id, project_id, user_id: u_id });
+        await db.exec("assignProject", { id, projid, user_id: u_id });
       }
 
       res.send({ message: "Users added to project successfully" });

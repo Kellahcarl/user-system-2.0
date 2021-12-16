@@ -4,10 +4,9 @@ const express = require("express");
 const path = require("path");
 const cors = require("cors");
 
-const registration = require("./tasks/email/registration");
-const projectAssign = require("./tasks/email/project-assign");
-const taskAssign = require("./tasks/email/task-assign");
-const { checkApi } = require("./controllers");
+const registration = require("./controllers/registration");
+const projectAssign = require("./controllers/project-assign");
+const taskAssign = require("./controllers/task-assign");
 
 const run = async () => {
   cron.schedule("2 * * * * *", async () => {
@@ -30,15 +29,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
-
-app.use("/", checkApi);
 
 app.get("*", (req, res) => {
   res.status(404).send({ message: "Page not found" });
 });
 
-const PORT = process.env.EMAIL_SERVER_PORT || 5001;
+const PORT = process.env.EMAIL_SERVER_PORT;
 app.listen(PORT, () =>
   console.log(`background services running on port ${PORT}`)
 );

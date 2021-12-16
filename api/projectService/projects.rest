@@ -3,11 +3,11 @@ Content-Type: application/json
 
 {
     "lead_user_id":"4df9ff7f-a9ba-42f9-9b2e-ed2902381d26",
-    "name":"first project",
-    "client_name":"theJitu",
-    "start_date":"1995, 11, 17",
-    "end_date":"1995, 11, 20",
-    "description":"getting tasks"
+    "name":"presentation project",
+    "client_name":"google",
+    "start_date":"2021, 12, 15",
+    "end_date":"2021, 12, 15",
+    "description":"showcasing  tasks"
 }
 
 ###
